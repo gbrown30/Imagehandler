@@ -79,4 +79,3 @@ C:\Users\gb\source\repos\WebImage\obj\Debug\WebImage.csproj.CoreCompileInputs.ca
 C:\Users\gb\source\repos\WebImage\obj\Debug\WebImage.csproj.CopyComplete
 C:\Users\gb\source\repos\WebImage\obj\Debug\WebImage.dll
 C:\Users\gb\source\repos\WebImage\obj\Debug\WebImage.pdb
-C:\Users\gb\source\repos\WebImage\obj\Debug\WebImage.csprojAssemblyReference.cache

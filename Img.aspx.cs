@@ -16,7 +16,9 @@ namespace WebImage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            System.Drawing.Image theImage = new Bitmap("C:\\Users\\gb\\source\\repos\\WebImage\\Images\\nature_interest.jpg");
+            var imgPath = HttpContext.Current.Server.MapPath("/Images/nature_interest.jpg"); 
+
+            System.Drawing.Image theImage = new Bitmap(imgPath);
 
             var folderName = "/Images/public/uploads/";
             var path = HttpContext.Current.Server.MapPath(folderName); 
@@ -101,8 +103,7 @@ namespace WebImage
                     y += 10;
                 } 
             }
-
-            display.InnerHtml = props.Length.ToString();
+             
             return (System.Drawing.Image)bmpImage;
         }
 

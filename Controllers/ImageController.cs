@@ -17,9 +17,17 @@ namespace WebImage.Controllers
     [RoutePrefix("api/imaging")]
     public class ImageController : ApiController
     {
+
+        [HttpGet]
+        [Route("")]
+        public string Get()
+        {
+            return "ok";
+        }
+
         [HttpPost]
         [Route("json")]
-        public async Task<ImageResponse> PostBase64(ImagePost posted)
+        public ImageResponse PostBase64(ImagePost posted)
         { 
             //create new image handler class
             var iM = new ImageMethods();
@@ -27,7 +35,6 @@ namespace WebImage.Controllers
             //get upload folder path
             var folderName = "/public/uploads/";
             var path = HttpContext.Current.Server.MapPath(folderName);
-            var rootUrl = Request.RequestUri.AbsoluteUri.Replace(Request.RequestUri.AbsolutePath, String.Empty);
 
             //set image name
             string imageName = posted.Upload_name + "." + posted.Media_format;            
@@ -67,7 +74,7 @@ namespace WebImage.Controllers
                         image_out = iM.resizeImage(image, size1);
                         break;
                 }
-
+                //save image
                 image_out.Save(imgPath); 
 
                 //get file
@@ -75,7 +82,7 @@ namespace WebImage.Controllers
                 var fpath = path + info.Name;
 
                 //add to response                   
-                response = new ImageResponse(info.Name, imgPath, info.Length / 1024, "");  
+                response = new ImageResponse(info.Name, imgPath, info.Length / 1024, "Success");  
             }
             catch (Exception e)
             {

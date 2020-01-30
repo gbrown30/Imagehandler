@@ -54,7 +54,7 @@ namespace WebImage.Functions
         public System.Drawing.Image textImage(System.Drawing.Image img, string text)
         {
             Bitmap bmpImage = new Bitmap(img);
-            //PointF poinf = new PointF(100, 20);
+            PointF poinf = new PointF(100, 20);
 
             int x = 20;
             int y = 10;
@@ -63,11 +63,19 @@ namespace WebImage.Functions
 
             using (Graphics g = Graphics.FromImage((System.Drawing.Image)bmpImage))
             {
-                foreach (var p in props)
+                if (!string.IsNullOrEmpty(text))
                 {
-                    g.DrawString("Id: " + p.Id.ToString() + " type: " + p.Type.ToString() + " value: " + Encoding.UTF8.GetString(p.Value, 0, p.Value.Length), new Font("Arial", 10), brush, x, y);
-                    y += 10;
+                    g.DrawString(text, new Font("Arial", 20), brush, poinf);
                 }
+                else
+                {
+                    foreach (var p in props)
+                    {
+                        g.DrawString("Id: " + p.Id.ToString() + " type: " + p.Type.ToString() + " value: " + Encoding.UTF8.GetString(p.Value, 0, p.Value.Length), new Font("Arial", 10), brush, x, y);
+                        y += 10;
+                    }
+                }
+                
             }
 
             return (System.Drawing.Image)bmpImage;
@@ -84,7 +92,6 @@ namespace WebImage.Functions
                 var pen = new Pen(Brushes.LightGray, 1);
                 g.DrawEllipse(pen, 30, 30, 160, 160);
             }
-            //Bitmap bmpCrop = bmpImage.Clone(, bmpImage.PixelFormat);
 
             return (System.Drawing.Image)bmpImage;
         }
